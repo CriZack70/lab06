@@ -29,6 +29,9 @@ public final class ServiceBehindUnstableNetwork implements NetworkComponent {
         /*
          * The probability should be in [0, 1[!
          */
+        if (failProbability < 0 || failProbability >= 1) {
+            throw new IllegalArgumentException("Probality must be within 0 (included) and 1 (excluded). Provided: " + failProbability);
+        }
         this.failProbability = failProbability;
         randomGenerator = new Random(randomSeed);
     }
@@ -64,6 +67,7 @@ public final class ServiceBehindUnstableNetwork implements NetworkComponent {
              *
              * The previous exceptions must be set as the cause of the new exception
              */
+
         }
     }
 
